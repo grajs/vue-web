@@ -28,7 +28,7 @@ module.exports = {
             limit: 5000
           }
         }]
-      },
+      }
     ]
   },
   plugins: [
