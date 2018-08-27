@@ -5,10 +5,12 @@ const {VueLoaderPlugin} = require('vue-loader')
 const isProduction = process.env.NODE_ENV === 'production' ? 1 : 0
 module.exports = {
   mode: isProduction ? 'production' : 'development',
-  entry: ['babel-polyfill', resolve('../src/main')],
+  entry: {
+    app: ['babel-polyfill', resolve('../src/main')]
+  },
   output: {
     path: resolve('../dist'),
-    filename: isProduction ? '[name].[chunkhash].js' : '[name].js',
+    filename: isProduction ? '[name].[hash:8].js' : '[name].js',
     publicPath: '/'
   },
   module: {
@@ -22,7 +24,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: `assets/images/[name].${isProduction ? '[hash]' : ''}.[ext]`,
+            name: `assets/images/[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
             limit: 5000
           }
         }]
