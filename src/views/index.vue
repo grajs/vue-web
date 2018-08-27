@@ -1,12 +1,15 @@
 <template>
   <div>
-    index
+    ind大萨达ex
+    <router-link to="/table">table</router-link>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'index'
+    mounted() {
+      this.$message({message: 'dsa', type: 'success'})
+    }
   }
 </script>
 
