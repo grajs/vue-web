@@ -50,8 +50,8 @@ module.exports = {
       inline: /runtime-.+\.js$/
     }),
     new MiniCssExtractPlugin({
-      filename: isProduction ? '[name].[hash:8].css' : '[name].css',
-      chunkFilename: isProduction ? '[id].[hash:8].css' : '[id].css'
+      filename: '[name].[hash:8].css',
+      chunkFilename: '[id].[hash:8].css'
     }),
     new OptimizeCssAssetsPlugin()
   ] : [
