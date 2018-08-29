@@ -46,12 +46,13 @@ module.exports = {
       template: resolve('../src/template.html')
     })
   ].concat(isProduction ? [
+    new webpack.HashedModuleIdsPlugin(),
     new ScriptExtHtmlWebpackPlugin({
       inline: /runtime-.+\.js$/
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash:8].css',
-      chunkFilename: '[id].[hash:8].css'
+      filename: '[name].[contenthash:8].css',
+      chunkFilename: '[id].[contenthash:8].css'
     }),
     new OptimizeCssAssetsPlugin()
   ] : [
