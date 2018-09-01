@@ -1,24 +1,24 @@
 import Vue from 'vue'
+import VueX from 'vuex'
+import VueRouter from 'vue-router'
 import App from './App'
-import router from './router'
+import routerConfig from './router'
+import routerControl from './router/router-control'
+import stateConfig from './store'
+import registerComponent from './utils/register-component'
 import './assets/style/common.css'
-import {
-  Message,
-  Table,
-  TableColumn,
-  Menu,
-  MenuItem,
-  Submenu
-} from 'element-ui'
 
-Vue.prototype.$message = Message
-Vue.component(Table.name, Table)
-Vue.component(TableColumn.name, TableColumn)
-Vue.component(Menu.name, Menu)
-Vue.component(MenuItem.name, MenuItem)
-Vue.component(Submenu.name, Submenu)
+registerComponent(Vue)
+Vue.use(VueX)
+Vue.use(VueRouter)
+
+const router = new VueRouter(routerConfig)
+routerControl(router)
+const store = new VueX.Store(stateConfig)
+
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
