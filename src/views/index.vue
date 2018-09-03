@@ -21,6 +21,9 @@
     },
     mounted() {
       this.$message({message: 'dsa', type: 'success'})
+      const a = {
+        name: 43
+      }
     },
     components: {}
   }
