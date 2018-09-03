@@ -4,7 +4,8 @@ import {
   TableColumn,
   Menu,
   MenuItem,
-  Submenu
+  Submenu,
+  Button
 } from 'element-ui'
 
 export default Vue => {
@@ -15,4 +16,5 @@ export default Vue => {
   Vue.component(Menu.name, Menu)
   Vue.component(MenuItem.name, MenuItem)
   Vue.component(Submenu.name, Submenu)
+  Vue.component(Button.name, Button)
 }

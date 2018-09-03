@@ -1,6 +1,8 @@
 <template>
   <div class="app">
-    <header-menu></header-menu>
+    <transition name="menu">
+      <header-menu v-show="headShow" class="menu"></header-menu>
+    </transition>
     <transition :name="transitionName" v-if="!$route.meta.keepAlive">
       <router-view class="router-view" :key="$route.path"></router-view>
     </transition>
@@ -18,9 +20,20 @@
   export default {
     data() {
       return {
-        transitionName: 'slide-right'
+        transitionName: 'slide-right',
+        headShow: true
       }
     },
+    mounted() {
+      let time = null
+      document.addEventListener('scroll', () => {
+        clearTimeout(time)
+        time = setTimeout(() => {
+          this.headShow = false
+        }, 300)
+      })
+    },
+    methods: {},
     watch: {
       '$route'(to, from) {
         const toDepth = to.path.split('/').length
@@ -34,7 +47,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .router-view {
     position: relative;
     left: 0;
@@ -52,5 +65,28 @@
   .slide-right-enter {
     opacity: 0;
     left: 10px;
+  }
+
+  .menu {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+  }
+
+  .menu-leave-active, .menu-enter-active {
+    transition: all .6s;
+  }
+
+  .menu-enter {
+    top: 0;
+  }
+
+  .menu-leave-to {
+    top: -60px;
+  }
+
+  .router-view {
+    margin-top: 60px;
   }
 </style>
