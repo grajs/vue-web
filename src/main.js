@@ -3,9 +3,10 @@ import VueX from 'vuex'
 import VueRouter from 'vue-router'
 import App from './App'
 import routerConfig from './router'
-import routerControl from './router/router-control'
 import stateConfig from './store'
+import routerControl from './router/router-control'
 import registerComponent from './utils/register-component'
+import axios from './utils/axios'
 import './assets/style/common.css'
 
 registerComponent(Vue)
@@ -13,8 +14,9 @@ Vue.use(VueX)
 Vue.use(VueRouter)
 
 const router = new VueRouter(routerConfig)
-routerControl(router)
 const store = new VueX.Store(stateConfig)
+Vue.use(axios, store)
+routerControl(router, store)
 
 new Vue({
   el: '#app',

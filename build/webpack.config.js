@@ -9,7 +9,7 @@ const isProduction = process.env.NODE_ENV === 'production' ? 1 : 0
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
-    app: ['babel-polyfill', resolve('../src/main')]
+    app: isProduction ? ['babel-polyfill'] : [].concat([resolve('../src/main')])
   },
   output: {
     path: resolve('../dist'),
