@@ -3,17 +3,12 @@
     ind大萨达ex
     <router-link to="/table">table</router-link>
     <span>{{token}}</span>
-    <demo>
-      <template slot-scope="{nums}" slot="demo">
-        {{nums}}11
-      </template>
-    </demo>
+    <div>{{$route.path}}</div>
   </div>
 </template>
 
 <script>
   import {mapState} from 'vuex'
-  import demo from '../components/demo'
 
   export default {
     data() {
@@ -27,9 +22,7 @@
     mounted() {
       this.$message({message: 'dsa', type: 'success'})
     },
-    components: {
-      demo
-    }
+    components: {}
   }
 </script>
 

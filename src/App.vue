@@ -1,9 +1,14 @@
 <template>
   <div class="app">
     <header-menu></header-menu>
-    <transition :name="transitionName">
-      <router-view class="router-view"></router-view>
+    <transition :name="transitionName" v-if="!$route.meta.keepAlive">
+      <router-view class="router-view" :key="$route.path"></router-view>
     </transition>
+    <keep-alive>
+      <transition :name="transitionName" v-if="$route.meta.keepAlive">
+        <router-view class="router-view" :key="$route.path"></router-view>
+      </transition>
+    </keep-alive>
   </div>
 </template>
 
