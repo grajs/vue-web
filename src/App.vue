@@ -3,14 +3,14 @@
     <transition name="menu">
       <header-menu v-show="headShow" class="menu"></header-menu>
     </transition>
-    <transition :name="transitionName" v-if="!$route.meta.keepAlive">
-      <router-view class="router-view" :key="$route.path"></router-view>
+    <transition :name="transitionName">
+      <router-view class="router-view" v-if="!$route.meta.keepAlive" :key="$route.path"></router-view>
     </transition>
-    <keep-alive>
-      <transition :name="transitionName" v-if="$route.meta.keepAlive">
-        <router-view class="router-view" :key="$route.path"></router-view>
-      </transition>
-    </keep-alive>
+    <transition :name="transitionName">
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" class="router-view" :key="$route.path"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
