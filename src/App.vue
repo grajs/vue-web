@@ -25,12 +25,28 @@
       }
     },
     mounted() {
+      let tag = true
       let time = null
+      let lastScrollTop = 0
+      const scrollTop = () => document.documentElement.scrollTop || document.body.scrollTop
       document.addEventListener('scroll', () => {
+        if (tag) {
+          tag = false
+          setTimeout(() => tag = true, 200)
+          const top = scrollTop()
+          if (top - lastScrollTop < 0) {
+            // up
+            this.headShow = true
+          } else {
+            // down
+            top > 100 && (this.headShow = false)
+          }
+          lastScrollTop = top
+        }
         clearTimeout(time)
         time = setTimeout(() => {
-          this.headShow = false
-        }, 300)
+          scrollTop() < 100 && (this.headShow = true)
+        }, 500)
       })
     },
     methods: {},
@@ -75,14 +91,11 @@
   }
 
   .menu-leave-active, .menu-enter-active {
-    transition: all .6s;
+    transition: all .5s;
   }
 
-  .menu-enter {
-    top: 0;
-  }
-
-  .menu-leave-to {
+  .menu-enter, .menu-leave-to {
+    opacity: 0;
     top: -60px;
   }
 
