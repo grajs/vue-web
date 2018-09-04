@@ -22,7 +22,7 @@
         <el-menu-item index="2-4-3">选项3</el-menu-item>
       </el-submenu>
     </el-submenu>
-    <el-menu-item index="3">消息中心</el-menu-item>
+    <el-menu-item index="3"><router-link to="/list">拖拽列表</router-link></el-menu-item>
     <el-menu-item index="/table">
       <router-link to="/table">表格效果</router-link>
     </el-menu-item>

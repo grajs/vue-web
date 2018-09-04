@@ -15,5 +15,10 @@ export default [
     path: '/table',
     component: load('table'),
     meta: {title: 'table'}
+  },
+  {
+    path: '/list',
+    component: load('list'),
+    meta: {title: '列表'}
   }
 ]
