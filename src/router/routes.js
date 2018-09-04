@@ -4,7 +4,7 @@ export default [
   {
     path: '/',
     component: load('index'),
-    meta: {title: '首页', keepAlive: true}
+    meta: {title: '首页'}
   },
   {
     path: '/demo/:id',

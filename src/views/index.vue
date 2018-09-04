@@ -3,7 +3,6 @@
     <router-link to="/table">table</router-link>
     <span>{{token}}</span>
     <div>{{$route.path}}</div>
-    <input type="text"/>
   </div>
 </template>
 
