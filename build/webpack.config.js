@@ -91,8 +91,12 @@ module.exports = {
     hot: true,
     contentBase: resolve('../dist'),
     proxy: {
-      '/web': {
-        target: 'https://m.xxx.com/',
+      '/api': {
+        target: 'http://60.205.217.144:3389',
+        changeOrigin: true
+      },
+      '/wf': {
+        target: 'http://60.205.217.144:3389',
         changeOrigin: true
       }
     }

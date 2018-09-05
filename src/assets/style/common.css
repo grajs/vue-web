@@ -12,3 +12,7 @@ ul {
     margin: 0;
     list-style: none;
 }
+
+.el-table th .cell, .el-pagination {
+    text-align: center;
+}

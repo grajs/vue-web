@@ -5,7 +5,8 @@ import {
   Menu,
   MenuItem,
   Submenu,
-  Button
+  Button,
+  Pagination
 } from 'element-ui'
 
 export default Vue => {
@@ -17,4 +18,5 @@ export default Vue => {
   Vue.component(MenuItem.name, MenuItem)
   Vue.component(Submenu.name, Submenu)
   Vue.component(Button.name, Button)
+  Vue.component(Pagination.name, Pagination)
 }
