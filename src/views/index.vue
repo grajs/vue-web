@@ -9,9 +9,9 @@
       <el-table-column prop="bundle_CT" label="数量"></el-table-column>
       <el-table-column prop="total_length" label="总量"></el-table-column>
       <el-table-column prop="store_id" label="库房信息"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="90px">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" plain icon="el-icon-plus">添加</el-button>
+          <el-button size="mini" type="primary" plain icon="el-icon-plus" @click="handler(scope)">添加</el-button>
         </template>
       </el-table-column>
     </el-table>
