@@ -1,18 +1,23 @@
 body {
-    margin: 0;
-    background-color: #fafafa;
+  margin: 0;
+  background-color: #fafafa;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .el-table th .cell, .el-pagination {
-    text-align: center;
+  text-align: center;
+}
+
+.el-dialog__body {
+  padding-top: 20px;
+  padding-bottom: 14px;
 }

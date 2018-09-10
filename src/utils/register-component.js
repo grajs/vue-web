@@ -6,7 +6,10 @@ import {
   MenuItem,
   Submenu,
   Button,
-  Pagination
+  Pagination,
+  Dialog,
+  Input,
+  InputNumber
 } from 'element-ui'
 
 export default Vue => {
@@ -19,4 +22,7 @@ export default Vue => {
   Vue.component(Submenu.name, Submenu)
   Vue.component(Button.name, Button)
   Vue.component(Pagination.name, Pagination)
+  Vue.component(Dialog.name, Dialog)
+  Vue.component(Input.name, Input)
+  Vue.component(InputNumber.name, InputNumber)
 }
