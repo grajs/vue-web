@@ -74,6 +74,7 @@
 
 <style lang="scss">
   .index {
+    padding-bottom: 1000px;
     .form-container {
       .el-dialog {
         width: 600px;

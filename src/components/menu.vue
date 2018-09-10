@@ -43,33 +43,35 @@
       }
     },
     mounted() {
-      let tag = true
-      let time = null
-      let lastScrollTop = 0
-      const scrollTop = () => document.documentElement.scrollTop || document.body.scrollTop
-      document.addEventListener('scroll', () => {
-        if (tag) {
-          tag = false
-          setTimeout(() => tag = true, 200)
-          const top = scrollTop()
-          if (top - lastScrollTop < 0) {
-            // up
-            this.headShow = true
-          } else {
-            // down
-            top > 100 && (this.headShow = false)
-          }
-          lastScrollTop = top
-        }
-        clearTimeout(time)
-        time = setTimeout(() => {
-          if (scrollTop() < 100) {
-            this.headShow = true
-          }
-        }, 500)
-      })
+      this.menuScroll(60)
     },
     methods: {
+      menuScroll(height) {
+        let time = null
+        let lastScrollTop = 0
+        const scrollTop = () => document.documentElement.scrollTop || document.body.scrollTop
+        document.addEventListener('scroll', () => {
+          clearTimeout(time)
+          time = setTimeout(() => {
+            const top = scrollTop()
+            if (top - lastScrollTop < 0) {
+              // up
+              this.headShow = true
+            } else {
+              // down
+              top > height && (this.headShow = false)
+            }
+            lastScrollTop = top
+            if (scrollTop() < height) {
+              this.headShow = true
+            } else {
+              if (top >= document.body.clientHeight - document.documentElement.clientHeight + height) {
+                this.headShow = false
+              }
+            }
+          }, 200)
+        })
+      },
       handleSelect(key, keyPath) {
         // console.log(key, keyPath)
       }
