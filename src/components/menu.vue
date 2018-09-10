@@ -1,40 +1,73 @@
 <template>
-  <el-menu
-          :default-active="activeIndex"
-          class="menu"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-    <el-menu-item index="/">
-      <router-link to="/">首页</router-link>
-    </el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">我的工作台</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
-      <el-submenu index="2-4">
-        <template slot="title">选项4</template>
-        <el-menu-item index="2-4-1">选项1</el-menu-item>
-        <el-menu-item index="2-4-2">选项2</el-menu-item>
-        <el-menu-item index="2-4-3">选项3</el-menu-item>
+  <transition name="menu">
+    <el-menu
+      v-show="headShow"
+      class="menu"
+      :default-active="activeIndex"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-menu-item index="/">
+        <router-link to="/">首页</router-link>
+      </el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-2">选项2</el-menu-item>
+        <el-menu-item index="2-3">选项3</el-menu-item>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项1</el-menu-item>
+          <el-menu-item index="2-4-2">选项2</el-menu-item>
+          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        </el-submenu>
       </el-submenu>
-    </el-submenu>
-    <el-menu-item index="3"><router-link to="/list">拖拽列表</router-link></el-menu-item>
-    <el-menu-item index="/table">
-      <router-link to="/table">表格效果</router-link>
-    </el-menu-item>
-  </el-menu>
+      <el-menu-item index="3">
+        <router-link to="/list">拖拽列表</router-link>
+      </el-menu-item>
+      <el-menu-item index="/table">
+        <router-link to="/table">表格效果</router-link>
+      </el-menu-item>
+    </el-menu>
+  </transition>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        activeIndex: ''
+        activeIndex: '',
+        headShow: true
       }
+    },
+    mounted() {
+      let tag = true
+      let time = null
+      let lastScrollTop = 0
+      const scrollTop = () => document.documentElement.scrollTop || document.body.scrollTop
+      document.addEventListener('scroll', () => {
+        if (tag) {
+          tag = false
+          setTimeout(() => tag = true, 200)
+          const top = scrollTop()
+          if (top - lastScrollTop < 0) {
+            // up
+            this.headShow = true
+          } else {
+            // down
+            top > 100 && (this.headShow = false)
+          }
+          lastScrollTop = top
+        }
+        clearTimeout(time)
+        time = setTimeout(() => {
+          if (scrollTop() < 100) {
+            this.headShow = true
+          }
+        }, 500)
+      })
     },
     methods: {
       handleSelect(key, keyPath) {
@@ -50,16 +83,37 @@
 </script>
 
 <style lang="scss" scoped>
-  a {
-    display: inline-block;
+  .menu {
+    position: fixed;
+    z-index: 10;
     width: 100%;
-    height: 100%;
+    top: 0;
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+    > .el-menu-item {
+      padding: 0;
+      box-sizing: border-box;
+      width: 96px;
+      text-align: center;
+    }
   }
 
-  .menu .el-menu-item {
-    padding: 0;
-    box-sizing: border-box;
-    width: 96px;
-    text-align: center;
+  .el-menu {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+  }
+
+  .menu-leave-active, .menu-enter-active {
+    transition: all .5s;
+  }
+
+  .menu-enter, .menu-leave-to {
+    opacity: 0;
+    top: -60px !important;
   }
 </style>
