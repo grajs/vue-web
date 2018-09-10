@@ -1,12 +1,12 @@
 <template>
   <div class="app">
-    <header-menu></header-menu>
+    <header-menu ref="menu"></header-menu>
     <transition :name="transitionName">
-      <router-view class="router-view" v-if="!$route.meta.keepAlive" :key="$route.path"></router-view>
+      <router-view class="router-view" v-if="!$route.meta.keepAlive"></router-view>
     </transition>
     <transition :name="transitionName">
       <keep-alive>
-        <router-view v-if="$route.meta.keepAlive" class="router-view" :key="$route.path"></router-view>
+        <router-view v-if="$route.meta.keepAlive" class="router-view"></router-view>
       </keep-alive>
     </transition>
   </div>
@@ -54,8 +54,6 @@
     opacity: 0;
     left: 10px;
   }
-
-
 
   .router-view {
     margin-top: 60px;
