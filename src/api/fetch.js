@@ -1,6 +1,7 @@
 import axios from 'axios'
+import store from '../store'
 
-export const fetch = store => (url, data = {}, method = 'get', formData = false) => new Promise((resolve, reject) => {
+export default (url, data = {}, method = 'get', formData = false) => new Promise((resolve, reject) => {
   const config = {
     headers: {'Authorization': store.state.token},
     url,
@@ -28,8 +29,3 @@ export const fetch = store => (url, data = {}, method = 'get', formData = false)
     }
   }).catch(err => reject({data: {message: err.message}}))
 })
-export default {
-  install(Vue, store) {
-    Vue.prototype.$axios = fetch(store)
-  }
-}

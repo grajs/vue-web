@@ -1,4 +1,9 @@
-export default {
+import Vue from 'vue'
+import VueX from 'vuex'
+
+Vue.use(VueX)
+
+export default new VueX.Store({
   state: {
     token: null
   },
@@ -7,4 +12,4 @@ export default {
       state.token = token
     }
   }
-}
+})

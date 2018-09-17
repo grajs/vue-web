@@ -43,6 +43,7 @@
 </template>
 
 <script>
+  import {indexData} from '../api'
   import getTime from '../utils/getTime'
 
   export default {
@@ -56,12 +57,10 @@
       }
     },
     created() {
-      this.$axios('/wf/batch', {id: 1}).then(({data}) => {
+      indexData.then(({data}) => {
         data.forEach(i => i.create_time = this.getTime(i.create_time))
         this.list = data
       })
-    },
-    mounted() {
     },
     methods: {
       getTime,
