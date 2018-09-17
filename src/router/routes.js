@@ -4,6 +4,6 @@ export default [
   {
     path: '/',
     component: load('index'),
-    meta: {title: '首页'}
+    meta: {title: '首页', requireAuth: true}
   }
 ]

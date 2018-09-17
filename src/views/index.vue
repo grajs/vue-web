@@ -39,6 +39,7 @@
                    :page-size="pageSize"
                    :total="120"></el-pagination>
     <span ref="demo" id="demo">{{text}}</span>
+    <button @click="$store.commit('loginOut')">loginOut</button>
   </div>
 </template>
 
