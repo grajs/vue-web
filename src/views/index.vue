@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import {indexData} from '../api'
+  import { indexData } from '../api'
   import getTime from '../utils/getTime'
 
   export default {
@@ -58,7 +58,7 @@
       }
     },
     created() {
-      indexData.then(({data}) => {
+      indexData({ id: 1 }).then(({ data }) => {
         data.forEach(i => i.create_time = this.getTime(i.create_time))
         this.list = data
       })
