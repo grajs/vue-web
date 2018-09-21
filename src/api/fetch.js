@@ -2,11 +2,19 @@ import axios from 'axios'
 import store from '../store'
 
 export default (url, data = {}, method = 'get', formData = false) => new Promise((resolve, reject) => {
+
+  let cancelToken = null
+  if (data.cancelToken instanceof axios.CancelToken) {
+    cancelToken = data.cancelToken
+    delete data.cancelToken
+  }
+
   const config = {
-    headers: {'Authorization': store.state.token},
+    headers: { 'Authorization': store.state.token },
     url,
     method,
-    params: method === 'get' ? data : null
+    params: method === 'get' ? data : null,
+    cancelToken
   }
 
   if (formData === true) {
@@ -21,11 +29,11 @@ export default (url, data = {}, method = 'get', formData = false) => new Promise
     config.data = data
   }
 
-  axios(config).then(({status, data}) => {
+  axios(config).then(({ status, data }) => {
     if (status >= 200 && status < 400 && data.code === 0) {
       resolve(data)
     } else {
       reject(data)
     }
-  }).catch(err => reject({data: {message: err.message}}))
+  }).catch(err => reject({ data: { message: err.message } }))
 })
