@@ -12,10 +12,10 @@ export default router => router.beforeEach((to, from, next) => {
         store.commit('setToken', document.cookie.match(/token=[^;]+/)[0].replace(/^token=/, ''))
         next()
       } else {
-        store.commit('loginIn', {token: '123'})
+        store.commit('loginIn', { token: '123' })
         next({
           path: '/login',
-          query: {redirect: to.fullPath},
+          query: { redirect: to.fullPath },
           replace: true
         })
       }

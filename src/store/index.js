@@ -11,7 +11,7 @@ export default new VueX.Store({
     setToken(state, token) {
       state.token = token
     },
-    loginIn(state, {token, expires}) {
+    loginIn(state, { token, expires }) {
       state.token = token
       if (document) {
         if (expires) {
