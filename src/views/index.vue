@@ -74,11 +74,13 @@
 
 <style lang="scss">
   .index {
+
     .form-container {
       .el-dialog {
         width: 600px;
       }
     }
+
     .form {
       text-align: center;
       padding: 0 8%;
@@ -89,6 +91,7 @@
         }
       }
     }
+
     .input-number {
       display: flex;
       label {
@@ -113,9 +116,11 @@
         flex-grow: 1;
       }
     }
+
     .num-label {
       margin-right: 10px;
     }
+
     .pager {
       margin-top: 20px;
     }
