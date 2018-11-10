@@ -1,5 +1,5 @@
 {
-  "name": "wf",
+  "name": "vue-web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "build": "rimraf dist&&cross-env NODE_ENV=production webpack --config build/webpack.config.js --progress",
     "dev": "webpack-dev-server --config build/webpack.config.js"
   },
-  "author": "",
+  "author": "liujianhua",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^9.1.3",

@@ -44,9 +44,6 @@
 </template>
 
 <script>
-  import { indexData } from '../api'
-  import getTime from '../utils/getTime'
-
   export default {
     data() {
       return {
@@ -58,29 +55,22 @@
       }
     },
     created() {
-      indexData({ id: 1 }).then(({ data }) => {
-        data.forEach(i => i.create_time = this.getTime(i.create_time))
+      this.$axios('/wf/batch', {id: 1}).then(data => {
+        const list = data.data
+        list.forEach(i => i.create_time = this.getTime(i.create_time))
         this.list = data
-      })
-    },
-    methods: {
-      getTime,
-      handler(data) {
-        this.dialogShow = true
-      }
+      }).catch(err => this.$message.error(err))
     }
   }
 </script>
 
 <style lang="scss">
   .index {
-
     .form-container {
       .el-dialog {
         width: 600px;
       }
     }
-
     .form {
       text-align: center;
       padding: 0 8%;
@@ -91,7 +81,6 @@
         }
       }
     }
-
     .input-number {
       display: flex;
       label {
@@ -116,11 +105,9 @@
         flex-grow: 1;
       }
     }
-
     .num-label {
       margin-right: 10px;
     }
-
     .pager {
       margin-top: 20px;
     }
