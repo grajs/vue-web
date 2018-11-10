@@ -5,7 +5,7 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
-const isProduction = process.env.NODE_ENV === 'production' ? 1 : 0
+const isProduction = process.env.NODE_ENV === 'production'
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
