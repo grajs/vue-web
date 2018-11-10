@@ -9,7 +9,7 @@ const axios = (url, data = {}, method = 'get', formData = false) => new Promise(
   }
 
   const config = {
-    headers: {'Authorization': store.state.token},
+    headers: { 'Authorization': store.state.token },
     url,
     method,
     params: method === 'get' ? data : null,

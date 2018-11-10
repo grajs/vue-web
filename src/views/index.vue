@@ -55,7 +55,7 @@
       }
     },
     created() {
-      this.$axios('/wf/batch', {id: 1}).then(data => {
+      this.$axios('/wf/batch', { id: 1 }).then(data => {
         const list = data.data
         list.forEach(i => i.create_time = this.getTime(i.create_time))
         this.list = data

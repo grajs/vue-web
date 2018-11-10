@@ -1,4 +1,4 @@
-import store from '../store'
+import store from '~/store'
 
 export default router => router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.title) && document) {
