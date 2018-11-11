@@ -6,7 +6,7 @@ import registerComponent from './utils/register-element-ui'
 import axios from './utils/axios'
 import './assets/style/common.css'
 
-registerComponent(Vue)
+Vue.use(registerComponent)
 Vue.use(axios)
 
 new Vue({

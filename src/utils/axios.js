@@ -37,4 +37,8 @@ const axios = (url, data = {}, method = 'get', formData = false) => new Promise(
   }).catch(err => reject(err))
 })
 
-export default Vue => Vue.prototype.$axios = axios
+export default {
+  install(Vue) {
+    Vue.prototype.$axios = axios
+  }
+}
