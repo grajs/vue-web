@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import store from '../store/index'
+import store from '../store'
 
 const axios = (url, data = {}, method = 'get', formData = false) => new Promise((resolve, reject) => {
   let cancelToken = null
