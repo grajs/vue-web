@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <el-dialog :visible.sync="dialogShow" title="添加商品" class="form-container">
+    <el-dialog :visible.sync="addShow" title="添加商品" class="form-container">
       <div class="form">
         <el-input>
           <template slot="prepend">名称</template>
@@ -20,16 +20,16 @@
     </el-dialog>
     <el-table :data="list" stripe style="width: 100%" :row-style="{textAlign:'center'}">
       <el-table-column prop="create_time" label="日期" width="150px"></el-table-column>
-      <el-table-column prop="id" label="批次"></el-table-column>
-      <el-table-column prop="type" label="型号"></el-table-column>
-      <el-table-column prop="colour" label="颜色"></el-table-column>
-      <el-table-column prop="bundle_length" label="规格"></el-table-column>
-      <el-table-column prop="bundle_CT" label="数量"></el-table-column>
-      <el-table-column prop="total_length" label="总量"></el-table-column>
-      <el-table-column prop="store_id" label="库房信息"></el-table-column>
+      <el-table-column prop="batch" label="批次"></el-table-column>
+      <el-table-column prop="model" label="型号"></el-table-column>
+      <el-table-column prop="color" label="颜色"></el-table-column>
+      <el-table-column prop="spec" label="规格"></el-table-column>
+      <el-table-column prop="count" label="数量"></el-table-column>
+      <el-table-column prop="total" label="总量"></el-table-column>
+      <el-table-column prop="store" label="库房信息"></el-table-column>
       <el-table-column label="操作" width="90px">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" plain icon="el-icon-plus" @click="handler(scope)">添加</el-button>
+          <el-button size="mini" type="primary" plain icon="el-icon-plus" @click="detail(scope)">添加</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -38,8 +38,6 @@
                    layout="prev, pager, next"
                    :page-size="pageSize"
                    :total="120"></el-pagination>
-    <span ref="demo" id="demo">{{text}}</span>
-    <button @click="$store.commit('loginOut')">loginOut</button>
   </div>
 </template>
 
@@ -49,17 +47,31 @@
       return {
         list: [],
         pageSize: 10,
-        dialogShow: false,
+        addShow: false,
         number: 1,
         text: '243'
       }
     },
     created() {
-      this.$axios('/wf/batch', { id: 1 }).then(data => {
-        const list = data.data
-        list.forEach(i => i.create_time = this.getTime(i.create_time))
-        this.list = data
-      }).catch(err => this.$message.error(err))
+      this.list = [
+        {
+          create_time: '2018-05-21 10:32:32',
+          batch: '第一批',
+          batch_id: 1,
+          model: '强力型',
+          color: '红色',
+          spec: '100m',
+          count: 21,
+          total: 122,
+          store: '第六库',
+          store_id: '1'
+        }
+      ]
+    },
+    methods: {
+      detail() {
+        this.addShow = true
+      }
     }
   }
 </script>
