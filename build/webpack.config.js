@@ -1,10 +1,11 @@
 const resolve = (path) => require('path').resolve(__dirname, path)
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const {VueLoaderPlugin} = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader')
 const isProduction = process.env.NODE_ENV === 'production'
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -18,8 +19,8 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-      {test: /\.vue$/, loader: 'vue-loader'},
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.vue$/, loader: 'vue-loader' },
       {
         test: /\.css$/,
         use: [isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader']
@@ -44,7 +45,13 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: resolve('../src/template.html')
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: resolve('../src/public'),
+        to: resolve('../dist')
+      }
+    ])
   ].concat(isProduction ? [
     new webpack.HashedModuleIdsPlugin(),
     new ScriptExtHtmlWebpackPlugin({
