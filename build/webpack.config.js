@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: resolve('../dist'),
-    filename: isProduction ? '[name].[chunkhash:8].js' : '[name].js',
+    filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : 'static/js/[name].js',
     publicPath: '/'
   },
   module: {
@@ -30,11 +30,21 @@ module.exports = {
         use: [isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
-        test: /\.(png|jpe?g|gif|eot|ttf|woff2?|svgz?)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [{
           loader: 'url-loader',
           options: {
-            name: `assets/images/[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
+            name: `static/image/[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
+            limit: 5000
+          }
+        }]
+      },
+      {
+        test: /\.(eot|ttf|woff2?|svgz?)$/i,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            name: `static/fonts/[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
             limit: 5000
           }
         }]
@@ -49,7 +59,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: resolve('../src/public'),
-        to: resolve('../dist')
+        to: resolve('../dist/static/public')
       }
     ])
   ].concat(isProduction ? [
@@ -59,7 +69,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
-      chunkFilename: '[id].[contenthash:8].css'
+      chunkFilename: 'static/css/[id].[contenthash:8].css'
     }),
     new OptimizeCssAssetsPlugin()
   ] : [
