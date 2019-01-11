@@ -119,5 +119,6 @@ module.exports = {
         changeOrigin: true
       }
     }
-  }
+  },
+  devtool: isProduction ? '' : 'souce-map'
 }
