@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: resolve('../dist'),
     filename: isProduction ? 'static/js/[name].[chunkhash:8].js' : 'static/js/[name].js',
-    publicPath: '/'
+    publicPath: ''
   },
   module: {
     rules: [
@@ -34,8 +34,9 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: `static/image/[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
-            limit: 5000
+            name: `[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
+            limit: 5000,
+            outputPath: 'static/image/'
           }
         }]
       },
@@ -44,8 +45,9 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: `static/fonts/[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
-            limit: 5000
+            name: `[name]${isProduction ? '.[hash:8]' : ''}.[ext]`,
+            limit: 5000,
+            outputPath: 'static/fonts/'
           }
         }]
       }

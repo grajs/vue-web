@@ -38,6 +38,7 @@
                    layout="prev, pager, next"
                    :page-size="pageSize"
                    :total="120"></el-pagination>
+                   <div id="demo"></div>
   </div>
 </template>
 
@@ -77,6 +78,11 @@
 </script>
 
 <style lang="scss">
+#demo{
+  width: 20px;
+  height: 20px;
+  background: url("../assets/image/vue.jpg")
+}
   .index {
     .form-container {
       .el-dialog {
