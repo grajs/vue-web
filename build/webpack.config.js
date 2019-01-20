@@ -23,11 +23,17 @@ module.exports = {
       { test: /\.vue$/, loader: 'vue-loader' },
       {
         test: /\.css$/,
-        use: [isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader']
+        use: [isProduction ? {
+          loader: MiniCssExtractPlugin.loader,
+          options: { publicPath: '../../' }
+        } : 'vue-style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.scss$/,
-        use: [isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        use: [isProduction ? {
+          loader: MiniCssExtractPlugin.loader,
+          options: { publicPath: '../../' }
+        } : 'vue-style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -106,7 +112,7 @@ module.exports = {
     }
   },
   devServer: {
-    host:'0.0.0.0',
+    host: '0.0.0.0',
     port: 8080,
     hot: true,
     disableHostCheck: true,
