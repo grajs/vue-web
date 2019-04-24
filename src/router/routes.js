@@ -6,5 +6,11 @@ export default [
     path: '/',
     component: load('index'),
     meta: { title: '首页' }
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: load('login'),
+    meta: { title: 'login' }
   }
 ]

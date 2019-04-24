@@ -1,9 +1,4 @@
-import Vue from 'vue'
-import VueX from 'vuex'
-
-Vue.use(VueX)
-
-export default new VueX.Store({
+export default VueX => new VueX.Store({
   state: {
     token: null
   },
