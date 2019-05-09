@@ -14,12 +14,7 @@ import {
 
 export default {
   install(Vue) {
-    Vue.prototype.$message = {
-      success: message => Message({ type: 'success', message }),
-      info: message => Message({ type: 'info', message }),
-      warning: message => Message({ type: 'warning', message }),
-      error: message => Message({ type: 'error', message })
-    }
+    Vue.prototype.$message = Message
 
     Vue.component(Table.name, Table)
     Vue.component(TableColumn.name, TableColumn)
