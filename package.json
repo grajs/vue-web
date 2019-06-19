@@ -58,7 +58,7 @@
     "vue-router": "^3.0.1",
     "vuex": "^3.1.1"
   },
-  "browserslist": [
+  "overrideBrowserslist": [
     "last 2 version",
     "> 1%",
     "not ie <= 8"
