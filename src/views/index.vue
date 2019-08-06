@@ -38,7 +38,6 @@
                    layout="prev, pager, next"
                    :page-size="pageSize"
                    :total="120"></el-pagination>
-                   <div id="demo"></div>
   </div>
 </template>
 
